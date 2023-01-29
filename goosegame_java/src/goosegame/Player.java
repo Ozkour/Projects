@@ -1,0 +1,62 @@
+ package goosegame;
+
+import goosegame.cells.*;
+import java.util.Random;
+
+/** A player in the "jeu de l'oie" game */
+public class Player {
+	
+	private static final Random ALEA = new Random();
+	
+    /** current cell of the player */
+    protected Cell cell;
+    /** name of the player*/
+    protected String name;
+    /** 
+     * @param name the name of this player
+     * @param cell the starting cell of this player
+    */
+    public Player (String name, Cell cell){
+        this.name = name;
+        this.cell = cell;
+    }
+    /**  A player with no current cell (== null)
+     * @param name the name of this player
+     * 
+    */
+    public Player (String name){
+        this(name, null);
+    }
+    /**returns the name of the player
+     * @return the name of the player
+     */
+    public String toString() {
+      return this.name;
+    }
+
+    /** returns the current cell of the player 
+      *  @return the current cell of the player 
+      */
+    public Cell getCell() { 
+       return this.cell ; 
+    }
+    /** changes the cell of the player 
+     * @param newCell the new cell
+    */
+    public void setCell(Cell newCell) { 
+       this.cell = newCell; 
+    }    
+    /** result of a 1d6 throw
+     * @return random result of a 1d6 throw 
+    */
+    private int oneDieThrow() {	
+       return ALEA.nextInt(6)+ 1; 
+    }
+    /** result of a 2d6 throw 
+      * @return random result of a 2d6 throw
+    */ 	
+    public int twoDiceThrow() {
+        int result = oneDieThrow() + oneDieThrow();
+        return result;
+    }
+}
